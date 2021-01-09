@@ -76,45 +76,43 @@
       }
     }
 
-    var canvas = document.getElementsByClassName('bubble')[0]
-    var conT = canvas.getContext('2d')//2d绘图环境
-    //获取浏览器宽高
-    var w = window.innerWidth
-    var h = window.innerHeight
-    canvas.width = w
-    canvas.height = h
-    var Bubbles = []//存放气泡球对象
-    var bubbleCount = 200
-    console.log("浏览器宽高：", w, h)
-
-    window.onresize = () => {//根据浏览器宽高设置canvas的宽高
-      w = window.innerWidth
-      h = window.innerHeight
+    {//业务代码
+      var canvas = document.getElementsByClassName('bubble')[0]
+      var conT = canvas.getContext('2d')//2d绘图环境
+      //获取浏览器宽高
+      var w = window.innerWidth
+      var h = window.innerHeight
       canvas.width = w
       canvas.height = h
-      console.log("canvas w/h", canvas.width, canvas.height)
-    }
+      var Bubbles = []//存放气泡球对象
+      var bubbleCount = 200
 
-    for (let i = 0; i < bubbleCount; i++) {//生成气泡球200个
-      Bubbles[i] = new Bubble()
-    }
-
-    window.setInterval(function () {
-      conT.clearRect(0, 0, w, h)//清空矩形区域,视觉上无法感知到。清除旧球
-      for (var item of Bubbles) {
-        item.move()
-        item.collisionRebound()
-        item.draw()
+      window.onresize = () => {//根据浏览器宽高设置canvas的宽高
+        w = window.innerWidth
+        h = window.innerHeight
+        canvas.width = w
+        canvas.height = h
       }
-    }, 1000 / 30)//1秒30帧 1000 / 30
 
-    //鼠标轨迹跟随
-    canvas.addEventListener("mousemove", (event) => {
-      var len = Bubbles.length
-      console.log("鼠标当前坐标:", event.pageX, event.pageY)
-      Bubbles[len] = new Bubble(event.pageX, event.pageY)
-    }, false)
+      //鼠标轨迹跟随
+      canvas.addEventListener("mousemove", (event) => {
+        var len = Bubbles.length
+        Bubbles[len] = new Bubble(event.pageX, event.pageY)
+      }, false)
 
+      for (let i = 0; i < bubbleCount; i++) {//生成气泡球200个
+        Bubbles[i] = new Bubble()
+      }
+
+      window.setInterval(function () {
+        conT.clearRect(0, 0, w, h)//清空矩形区域,视觉上无法感知到。清除旧球
+        for (var item of Bubbles) {
+          item.move()
+          item.collisionRebound()
+          item.draw()
+        }
+      }, 1000 / 30)//1秒30帧 1000 / 30
+    }
   </script>
 </body>
 
