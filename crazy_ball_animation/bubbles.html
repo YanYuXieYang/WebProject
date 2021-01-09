@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>动态气泡球</title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .bubble {
+      background-color: black;
+      display: inline;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas class="bubble"></canvas>
+  <script>
+    //气泡球class
+    class Bubble {
+      constructor(x, y) {
+        if (0 === arguments.length) {
+          this.init()
+        }
+        else {
+          this.init(x, y)
+        }
+      }
+      init(x, y) {//初始化，overload重载
+        if (0 === arguments.length) {
+          this.x = this.random(0, w)
+          this.y = this.random(0, h)
+        }
+        else {
+          this.x = x
+          this.y = y
+        }
+
+        this.r = this.random(3, 8)//半径
+
+        this.vx = this.random(-1, 1)//坐标移动的offset
+        this.vy = this.random(-1, 1)
+
+        this.draw()
+      }
+
+      random(min, max) {//生成[min, max]之间的随机数. Math.random()取值[0,1]
+        return Math.random() * (max - min) + min
+      }
+      move() {//移动
+        this.x += this.vx
+        this.y += this.vy
+      }
+      draw() {//绘制
+        conT.beginPath()//开始一条路径，或重置当前的路径
+        conT.fillStyle = "rgb(255,0,0)"
+        conT.arc(this.x, this.y, this.r, 0, 2 * Math.PI)//创建路径.圆心坐标,起始角和结束角
+        conT.fill()//绘制圆弧路径
+      }
+    }
+
+    var canvas = document.getElementsByClassName('bubble')[0]
+    var conT = canvas.getContext('2d')//2d绘图环境
+    //获取浏览器宽高
+    var w = window.innerWidth
+    var h = window.innerHeight
+    canvas.width = w
+    canvas.height = h
+    var Bubbles = []//存放气泡球对象
+    var bubbleCount = 200
+    console.log("浏览器宽高：", w, h)
+
+    window.onresize = () => {//根据浏览器宽高设置canvas的宽高
+      w = window.innerWidth
+      h = window.innerHeight
+      canvas.width = w
+      canvas.height = h
+      console.log("canvas w/h", canvas.width, canvas.height)
+    }
+
+    for (let i = 0; i < bubbleCount; i++) {//生成气泡球200个
+      Bubbles[i] = new Bubble()
+    }
+
+    window.setInterval(function () {
+      conT.clearRect(0, 0, w, h)//清空矩形区域,视觉上无法感知到。清除旧球
+      for (var key of Bubbles) {
+        key.move()
+        key.draw()
+      }
+    }, 1000 / 30)//1秒30帧 1000 / 30
+
+  </script>
+</body>
+
+</html>
