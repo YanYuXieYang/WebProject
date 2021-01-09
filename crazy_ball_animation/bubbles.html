@@ -39,13 +39,17 @@
           this.y = y
         }
 
-        this.r = this.random(3, 8)//半径
+        this.r = this.random(3, 12)//半径
         this.color = ("#" + Math.floor(Math.random() * 0xffffff).toString(16))//随机颜色值
 
         this.vx = this.random(-1, 1)//坐标移动的offset
         this.vy = this.random(-1, 1)
 
-        this.draw()
+        //在四边生成的小球能完全显示
+        this.x = this.x - this.r < 0 ? this.r : this.x
+        this.x = this.x + this.r > w ? w - this.r : this.x
+        this.y = this.y - this.r < 0 ? this.r : this.y
+        this.y = this.y + this.r > h ? h - this.r : this.y
       }
 
       random(min, max) {//生成[min, max]之间的随机数. Math.random()取值[0,1]
@@ -54,6 +58,15 @@
       move() {//移动
         this.x += this.vx
         this.y += this.vy
+      }
+
+      collisionRebound() {//碰边反弹
+        if (this.x - this.r < 0 || this.x + this.r > w) {
+          this.vx = -this.vx
+        }
+        if (this.y - this.r < 0 || this.y + this.r > h) {
+          this.vy = -this.vy
+        }
       }
       draw() {//绘制
         conT.beginPath()//开始一条路径，或重置当前的路径
@@ -88,11 +101,19 @@
 
     window.setInterval(function () {
       conT.clearRect(0, 0, w, h)//清空矩形区域,视觉上无法感知到。清除旧球
-      for (var key of Bubbles) {
-        key.move()
-        key.draw()
+      for (var item of Bubbles) {
+        item.move()
+        item.collisionRebound()
+        item.draw()
       }
     }, 1000 / 30)//1秒30帧 1000 / 30
+
+    //鼠标轨迹跟随
+    canvas.addEventListener("mousemove", (event) => {
+      var len = Bubbles.length
+      console.log("鼠标当前坐标:", event.pageX, event.pageY)
+      Bubbles[len] = new Bubble(event.pageX, event.pageY)
+    }, false)
 
   </script>
 </body>
