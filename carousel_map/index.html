@@ -1,27 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <title>轮播图</title>
-  <link rel="stylesheet" type="text/css" href="index.css">
+  <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
-  <div class="box">
-    <ul>
-      <li><img src="img/1.png" alt=""></li>
-      <li><img src="img/2.png" alt=""></li>
-      <li><img src="img/3.png" alt=""></li>
-      <li><img src="img/4.png" alt=""></li>
-      <li><img src="img/5.png" alt=""></li>
-    </ul>
+  <div class="wrapper">
+    <div class="box">
+      <ul>
+        <li class="imgshow"><img src="img/1.png" alt=""></li>
+        <li class="imgshow"><img src="img/2.png" alt=""></li>
+        <li class="imgshow"><img src="img/3.png" alt=""></li>
+        <li class="imgshow"><img src="img/4.png" alt=""></li>
+        <li class="imgshow"><img src="img/5.png" alt=""></li>
+      </ul>
+    </div>
+    <div class="next"></div>
+    <div class="last"></div>
+    <div class="dot">
+      <ul>
+        <li class='act'><a href="#"></a></li>
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+      </ul>
+    </div>
   </div>
 </body>
 
 <script src="index.js"></script>
-<script>
-  window.setInterval(disPlay, 2000);
-</script>
 
 </html>
