@@ -1,10 +1,13 @@
 var timer = null,//定时器
+  timerInv = 2000,//时间间隔
   index = 0,//图片索引
   img_count = 5,//图片数量
   locatArr = [0, -230, -460, -690, -920];//图片列表left属性值，与图片张数有关
-var box = document.getElementsByClassName('box')[0],
-  dot = document.getElementsByClassName('dot')[0];
-
+var box = document.getElementsByClassName('box')[0];
+var dot = document.getElementsByClassName('dot')[0];
+var li = dot.getElementsByTagName('li');
+var next = document.getElementsByClassName('next')[0];
+var last = document.getElementsByClassName('last')[0];
 /**
 *轮播图片展示函数(最新，利用CSS3)，根据索引值到达相应地方
 *@param none
@@ -48,18 +51,15 @@ function nextPlay () {
 *@return none
 */
 function bindEvent () {
-  var li = dot.getElementsByTagName('li');
-  var next = document.getElementsByClassName('next')[0];
-  var last = document.getElementsByClassName('last')[0];
   next.addEventListener('click', function () {
     clearInterval(timer);
     nextPlay();
-    timer = setInterval(disPlay, 2000);
+    timer = setInterval(disPlay, timerInv);
   });
   last.addEventListener('click', function () {
     clearInterval(timer);
     lastPlay();
-    timer = setInterval(disPlay, 2000);
+    timer = setInterval(disPlay, timerInv);
   });
   for (var i = 0; i < img_count; i++) {
     (function (j) {
@@ -67,9 +67,9 @@ function bindEvent () {
         clearInterval(timer);
         index = j;
         moveTo(index);
-        timer = setInterval(disPlay, 2000);
+        timer = setInterval(disPlay, timerInv);
       })
-    }(i))
+    }(i))//定义一个形参的匿名函数，并调用。实参为i
 
   }
 }
@@ -84,7 +84,7 @@ function moveTo (location) {
 }
 function start () {
 
-  timer = setInterval(disPlay, 2000);
+  timer = setInterval(disPlay, timerInv);
   var timerDot = setInterval(function () {
     var dots = document.getElementsByClassName('dot')[0];
     var singledot = dots.getElementsByTagName('li');
