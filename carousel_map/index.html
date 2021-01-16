@@ -1,32 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>轮播图</title>
-    <link rel="stylesheet" type="text/css" href="index.css">
+  <meta charset="UTF-8">
+  <title>轮播图</title>
+  <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
 <body>
-    <div class="container">
-        <div class="list" style=" left:-600px;">
-            <img src="img/0.jpg">
-            <img src="img/1.jpg">
-            <img src="img/2.jpg">
-            <img src="img/3.jpg">
-            <img src="img/4.jpg">
-        </div>
-        <ul class="dots">
-            <li index=0 class="active dot"></li>
-            <li index=1 class="dot"></li>
-            <li index=2 class="dot"></li>
-            <li index=3 class="dot"></li>
-            <li index=4 class="dot"></li>
-        </ul>
-        <div class="pre">《</div>
-        <div class="next">》</div>
-    </div>
-    <script src="index.js"></script>
+  <div class="box">
+    <ul>
+      <li><img src="img/1.png" alt=""></li>
+      <li><img src="img/2.png" alt=""></li>
+      <li><img src="img/3.png" alt=""></li>
+      <li><img src="img/4.png" alt=""></li>
+      <li><img src="img/5.png" alt=""></li>
+    </ul>
+  </div>
 </body>
+
+<script src="index.js"></script>
+<script>
+  window.setInterval(disPlay, 2000);
+</script>
 
 </html>
