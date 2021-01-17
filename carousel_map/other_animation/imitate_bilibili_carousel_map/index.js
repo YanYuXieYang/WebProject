@@ -1,7 +1,7 @@
 /*
  * @Author: YanYuXieYang
  * @Date: 2021-01-17 21:32:25
- * @LastEditTime: 2021-01-17 22:59:34
+ * @LastEditTime: 2021-01-17 23:04:37
  * @LastEditors: Please set LastEditors
  * @Description: YanYuXieYang
  * @FilePath: \WebProject\carousel_map\other_animation\imitate_bilibili_carousel_map\index.js
