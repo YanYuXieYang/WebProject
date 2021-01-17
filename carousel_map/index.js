@@ -21,21 +21,15 @@ var next = document.getElementsByClassName('next')[0];
  * @param {*}
  * @return {*}
  */
-function disPlay() {
-  if (index === img_count - 1) {
-    moveTo(0);
-    index = 0;
-  }
-  else {
-    moveTo(++index);
-  }
+function disPlay () {
+  nextPlay();
 }
 /**
  * @description: 上一张图片
  * @param {*}
  * @return {*}
  */
-function lastPlay() {
+function lastPlay () {
   if (index === 0) {
     index = img_count - 1;
     moveTo(img_count - 1);
@@ -49,7 +43,7 @@ function lastPlay() {
  * @param {*}
  * @return {*}
  */
-function nextPlay() {
+function nextPlay () {
   if (index === img_count - 1) {
     index = 0;
     moveTo(0);
@@ -59,31 +53,25 @@ function nextPlay() {
   }
 }
 /**
- * @description: 设置被选中圆点的背景
- * @param {*}
- * @return {*}
- */
-function setDotActBackground() {
-  for (var i = 0; i < img_count; i++) {
-    li[i].className = '';
-  }
-  li[index].className = 'act';
-}
-/**
  * @description: 跳转到某张图片
  * @param {*} location 索引值，具体位置存储在locatArr数组中
  * @return {*}
  */
-function moveTo(location) {
+function moveTo (location) {
   box.style.left = locatArr[location] + "px";
-  setDotActBackground();
+  // 设置被选中圆点的背景
+  for (var i = 0; i < img_count; i++) {
+    li[i].className = '';
+  }
+  li[location].className = 'act';
+  console.log("location:" + location);
 }
 /**
  * @description: 绑定时间，包括小圆点、箭头的click事件
  * @param {*}
  * @return {*}
  */
-function bindEvent() {
+function bindEvent () {
   next.addEventListener('click', () => {
     clearInterval(timer);
     nextPlay();
@@ -110,7 +98,7 @@ function bindEvent() {
  * @param {*}
  * @return {*}
  */
-function main() {
+function main () {
   timer = window.setInterval(disPlay, timerInv);
   bindEvent();
 }
