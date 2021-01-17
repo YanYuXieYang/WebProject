@@ -1,0 +1,51 @@
+<!--
+ * @Author: YanYuXieYang
+ * @Date: 2021-01-17 18:44:28
+ * @LastEditTime: 2021-01-17 22:07:25
+ * @LastEditors: Please set LastEditors
+ * @Description: 使用jquery的animate()执行 CSS 属性集的自定义动画。
+                  示例：模仿bilibili轮播图。
+                  缺点：无左右键无缝轮播。左侧有多余40px图像，低部少了16px，点击圆点跳转有多余过渡效果。
+                  优点：最后一张能循环到开头。
+ * @FilePath: \WebProject\carousel_map\other_animation\imitate_bilibili_carousel_map.html
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>模仿bilibili轮播图</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <!-- 轮播图区域 -->
+  <!-- 多个class类名使用空格分隔 -->
+  <div class="main-banner carousel">
+    <div class="pic">
+      <ul class="pic-content">
+        <li class="now"><img src="../../img/1.png" alt=""></li>
+        <li><img src="../../img/2.png" alt=""></li>
+        <li><img src="../../img/3.png" alt=""></li>
+        <li><img src="../../img/4.png" alt=""></li>
+        <li><img src="../../img/5.png" alt=""></li>
+      </ul>
+    </div>
+    <div class="title">
+      <a href="https://www.bilibili.com/blackboard/shuqidaka.html" target="_blank" class="onTitle">暑期爆个肝，瓜分30万</a>
+      <a href="https://www.bilibili.com/blackboard/shuqidaka.html" target="_blank">最高20000元现金奖励！</a>
+      <a href="https://www.bilibili.com/blackboard/shuqidaka.html" target="_blank">带你重回蓝三~</a>
+      <a href="https://www.bilibili.com/blackboard/shuqidaka.html" target="_blank">摸了摸空空如也的钱包……</a>
+      <a href="https://www.bilibili.com/blackboard/shuqidaka.html" target="_blank">没时间了，快上车</a>
+    </div>
+    <div class="triger">
+      <!-- 这里动态生成span标签作为小圆点 -->
+    </div>
+  </div>
+
+</body>
+<!-- <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script> -->
+<script src="../../lib/jquery.js"></script>
+<script src="index.js"></script>
+
+</html>

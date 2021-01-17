@@ -1,0 +1,97 @@
+/*
+ * @Author: YanYuXieYang
+ * @Date: 2021-01-17 21:32:11
+ * @LastEditTime: 2021-01-17 22:04:55
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \WebProject\carousel_map\other_animation\imitate_bilibili_carousel_map\index.css
+ */
+/*轮播图*/
+.main-banner {
+  position: relative;
+  width: 230px;
+  height: 410px;
+  margin: 50px auto;
+}
+
+.carousel {
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.main-banner .pic {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.main-banner .pic ul {
+  position: absolute;
+  overflow: hidden;
+  width: 500%;/*图片张数*width*/
+  height: 100%;
+}
+
+.main-banner .pic li {
+  float: left;
+  width: 230px;
+  height: 410px;
+}
+
+.main-banner .pic li img {
+  width: 100%;
+  height: 100%;
+}
+
+.main-banner .title {
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  width: 100%;
+  height: 35px;
+  background: -webkit-linear-gradient(transparent, rgba(0, 0, 0, .5));
+  line-height: 35px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.main-banner .title a {
+  color: #fff;
+  opacity: 0;
+}
+
+.main-banner .title .onTitle {
+  position: absolute;
+  left: 10px;
+  bottom: 0px;
+  opacity: 1;
+}
+
+.main-banner .triger {
+  position: absolute;
+  right: 10px;
+  bottom: 20px;
+  height: 25px;
+  line-height: 25px;
+}
+
+.main-banner .triger span {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin-left: 8px;
+  cursor: pointer;
+  background-color: blue;
+  /* background: url(../img/5.png) -855px -790px no-repeat; */
+}
+
+.main-banner .triger span.active {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: greenyellow;
+  /* background: url(../img/5.png) -854px -727px no-repeat; */
+}
