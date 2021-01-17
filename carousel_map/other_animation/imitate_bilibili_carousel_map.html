@@ -1,0 +1,199 @@
+<!--
+ * @Author: YanYuXieYang
+ * @Date: 2021-01-17 18:44:28
+ * @LastEditTime: 2021-01-17 18:52:39
+ * @LastEditors: Please set LastEditors
+ * @Description: 使用jquery模仿bilibili轮播图,无左右键无缝轮播
+ * @FilePath: \WebProject\carousel_map\other_animation\imitate_bilibili_carousel_map.html
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>模仿bilibili轮播图</title>
+  <style>
+    /*轮播图*/
+    .main-banner {
+      position: relative;
+      width: 440px;
+      height: 220px;
+    }
+
+    .carousel {
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .main-banner .pic {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .main-banner .pic ul {
+      position: absolute;
+      overflow: hidden;
+      width: 500%;
+      height: 100%;
+    }
+
+    .main-banner .pic li {
+      float: left;
+      width: 440px;
+      height: 220px;
+    }
+
+    .main-banner .pic li img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .main-banner .title {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 35px;
+      background: -webkit-linear-gradient(transparent, rgba(0, 0, 0, .5));
+      line-height: 35px;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .main-banner .title a {
+      color: #fff;
+      opacity: 0;
+    }
+
+    .main-banner .title .onTitle {
+      position: absolute;
+      left: 10px;
+      bottom: 0px;
+      opacity: 1;
+    }
+
+    .main-banner .triger {
+      position: absolute;
+      right: 10px;
+      bottom: 5px;
+      height: 25px;
+      line-height: 25px;
+    }
+
+    .main-banner .triger span {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      margin-left: 8px;
+      background-color: #fff;
+      cursor: pointer;
+      background-color: transparent;
+      background: url(../images/icons.png) -855px -790px no-repeat;
+    }
+
+    .main-banner .triger span.active {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      cursor: pointer;
+      background: url(../images/icons.png) -854px -727px no-repeat;
+      background-color: transparent;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 轮播图区域 -->
+  <div class="main-banner carousel">
+    <div class="pic">
+      <ul class="pic-content">
+        <li class="now"><img src="../img/1.png" alt=""></li>
+        <li><img src="../img/2.png" alt=""></li>
+        <li><img src="../img/3.png" alt=""></li>
+        <li><img src="../img/4.png" alt=""></li>
+        <li><img src="../img/5.png" alt=""></li>
+      </ul>
+    </div>
+    <div class="title">
+      <a href="https://www.bilibili.com/blackboard/shuqidaka.html" target="_blank" class="onTitle">暑期爆个肝，瓜分30万</a>
+      <a href="https://www.bilibili.com/blackboard/shuqidaka.html" target="_blank">最高20000元现金奖励！</a>
+      <a href="https://www.bilibili.com/blackboard/shuqidaka.html" target="_blank">带你重回蓝三~</a>
+      <a href="https://www.bilibili.com/blackboard/shuqidaka.html" target="_blank">摸了摸空空如也的钱包……</a>
+      <a href="https://www.bilibili.com/blackboard/shuqidaka.html" target="_blank">没时间了，快上车</a>
+    </div>
+    <div class="triger">
+      //这里动态生成span标签作为小圆点
+    </div>
+  </div>
+
+</body>
+<!-- <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script> -->
+<script src="../lib/jquery.js"></script>
+<script>
+  /*轮播图切换*/
+  $(function () {
+    var imgWidth = $('.pic-content li').width();
+    var index = 0;
+    var pContent = $(".pic-content");
+    var imgLen = $(".pic-content li").length;
+    var last = $(".pic-content li").last().clone();
+    var first = $(".pic-content li").first().clone();
+    var clock = null;
+    pContent.append(first);
+    pContent.prepend(last);
+    /*添加导航小圆点*/
+    for (var i = 0; i < imgLen; i++) {
+      $('.triger').append("<span></span>");
+    }
+    $(".triger span").eq(0).addClass('active');
+    pContent.css({ width: (imgLen + 2) * 100 + '%', left: -imgWidth });
+    /*自动轮播*/
+    //当鼠标在图片上停留时，停止自动轮播
+    $(".carousel").on("mouseenter", function () {
+      clearInterval(clock)
+    })
+    // //当鼠标离开时，开始自动轮播
+    $(".carousel").on("mouseleave", function () {
+      timeClock()
+    })
+    timeClock();
+    function autoPlay(len) {
+      pContent.animate({
+        left: '-=' + len * imgWidth
+      }, function () {
+        index += len;
+        if (index === imgLen) {
+          index = 0;
+          pContent.css({ left: -imgWidth })
+        }
+        setBullet();
+        setTitle();
+      })
+    }
+
+    $(".triger span").on('click', function () {
+      var currentIndex = $(this).index();
+      autoPlay(currentIndex - index);
+    })
+
+    function setBullet() {
+      $(".triger span").removeClass('active').eq(index).addClass('active')
+    }
+    function setTitle() {
+      $(".title a").removeClass('onTitle').eq(index).addClass('onTitle')
+    }
+    //自动轮播，每个一秒滚动一次
+    function timeClock() {
+      clock = setInterval(function () {
+        autoPlay(1)
+      }, 2000)
+    }
+
+  })
+
+</script>
+
+</html>
