@@ -1,7 +1,7 @@
 /*
  * @Author: YanYuXieYang
  * @Date: 2021-01-17 21:32:25
- * @LastEditTime: 2021-01-17 22:14:49
+ * @LastEditTime: 2021-01-17 22:37:46
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \WebProject\carousel_map\other_animation\imitate_bilibili_carousel_map\index.js
@@ -12,7 +12,10 @@ $(function () {
     var imgWidth = $('.pic-content li').width();
     var imgHeight = $('.pic-content li').height();
     var offsetWidth = 40;// 手动调整宽度
-    var offsetHeight = 16;// 手动调整高度
+    var offsetHeight = 16;// 手动调整高度。pic-content比img的height多16px
+    var top_pic = $('.pic').offset().top;
+    var top_pic_content = $('.pic-content').offset().top;
+    console.log("top_pic:" + top_pic + ", top_pic_content:" + top_pic_content);
     var index = 0;
     var pContent = $(".pic-content");
     var imgLen = $(".pic-content li").length;
@@ -26,8 +29,8 @@ $(function () {
         $('.triger').append("<span></span>");
     }
     $(".triger span").eq(0).addClass('active');
-    // 设置多个 CSS 属性。宽度加2个img的宽
-    pContent.css({ width: (imgLen + 2) * 100 + '%', left: -imgWidth - offsetWidth });
+    // 设置多个 CSS 属性。宽度加2个img的宽。手动调整top，pic-content比pic的下移了16px。
+    pContent.css({ width: (imgLen + 2) * 100 + '%', left: -imgWidth - offsetWidth, top: -offsetHeight });
     /*自动轮播*/
     /**
      * @description: 当鼠标在图片上停留时，停止自动轮播
@@ -57,7 +60,7 @@ $(function () {
             index += len;
             if (index === imgLen) {
                 index = 0;
-                pContent.css({ height: imgHeight - offsetHeight, left: -imgWidth - offsetWidth })
+                pContent.css({ left: -imgWidth - offsetWidth })
             }
             setBullet();
             setTitle();
