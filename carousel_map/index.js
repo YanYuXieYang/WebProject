@@ -64,7 +64,6 @@ function moveTo (location) {
     li[i].className = '';
   }
   li[location].className = 'act';
-  console.log("location:" + location);
 }
 /**
  * @description: 绑定时间，包括小圆点、箭头的click事件

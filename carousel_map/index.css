@@ -18,10 +18,11 @@ body{
 	width: 500%;/* 图片列表的宽度是容器宽度的倍数值 */
 	position: absolute;
 	left: 0;
-	top: 0;
-  transition: left 1s ease 1 forwards;  
+  top: 0;
+  transition: left 1s ease;
   /* transition: left 1s; // 可视过渡过程，但动画结束会倒退过渡到原始状态 */
-  /* transition: left 1s ease 1 forwards; // 无可视过渡过程，但动画结束会进入下一个循环 */
+  /* transition: left 1s ease 0 forwards; // 无可视过渡过程，但动画结束会进入下一个循环 */
+  /* animation: left 1s ease;// 无可视过渡过程，但动画结束会进入下一个循环 */
 }
 .box ul li{
 	float: left;
