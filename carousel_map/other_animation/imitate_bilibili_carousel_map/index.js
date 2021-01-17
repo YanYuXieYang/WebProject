@@ -1,9 +1,9 @@
 /*
  * @Author: YanYuXieYang
  * @Date: 2021-01-17 21:32:25
- * @LastEditTime: 2021-01-17 22:37:46
+ * @LastEditTime: 2021-01-17 22:46:26
  * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
+ * @Description: YanYuXieYang
  * @FilePath: \WebProject\carousel_map\other_animation\imitate_bilibili_carousel_map\index.js
  */
 
