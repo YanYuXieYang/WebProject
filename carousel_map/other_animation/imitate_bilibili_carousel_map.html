@@ -1,9 +1,12 @@
 <!--
  * @Author: YanYuXieYang
  * @Date: 2021-01-17 18:44:28
- * @LastEditTime: 2021-01-17 18:52:39
+ * @LastEditTime: 2021-01-17 20:45:37
  * @LastEditors: Please set LastEditors
- * @Description: 使用jquery模仿bilibili轮播图,无左右键无缝轮播
+ * @Description: 使用jquery的animate()执行 CSS 属性集的自定义动画。
+                  示例：模仿bilibili轮播图。
+                  缺点：无左右键无缝轮播。左侧有多余40px图像，点击圆点跳转有多余过渡效果。
+                  优点：最后一张能循环到开头。
  * @FilePath: \WebProject\carousel_map\other_animation\imitate_bilibili_carousel_map.html
 -->
 <!DOCTYPE html>
@@ -16,8 +19,9 @@
     /*轮播图*/
     .main-banner {
       position: relative;
-      width: 440px;
-      height: 220px;
+      width: 230px;
+      height: 410px;
+      margin: 50px auto;
     }
 
     .carousel {
@@ -40,8 +44,8 @@
 
     .main-banner .pic li {
       float: left;
-      width: 440px;
-      height: 220px;
+      width: 230px;
+      height: 410px;
     }
 
     .main-banner .pic li img {
@@ -87,10 +91,9 @@
       height: 18px;
       border-radius: 50%;
       margin-left: 8px;
-      background-color: #fff;
       cursor: pointer;
-      background-color: transparent;
-      background: url(../images/icons.png) -855px -790px no-repeat;
+      background-color: blue;
+      /* background: url(../img/5.png) -855px -790px no-repeat; */
     }
 
     .main-banner .triger span.active {
@@ -99,14 +102,15 @@
       height: 18px;
       border-radius: 50%;
       cursor: pointer;
-      background: url(../images/icons.png) -854px -727px no-repeat;
-      background-color: transparent;
+      background-color: greenyellow;
+      /* background: url(../img/5.png) -854px -727px no-repeat; */
     }
   </style>
 </head>
 
 <body>
   <!-- 轮播图区域 -->
+  <!-- 多个class类名使用空格分隔 -->
   <div class="main-banner carousel">
     <div class="pic">
       <ul class="pic-content">
@@ -125,7 +129,7 @@
       <a href="https://www.bilibili.com/blackboard/shuqidaka.html" target="_blank">没时间了，快上车</a>
     </div>
     <div class="triger">
-      //这里动态生成span标签作为小圆点
+      <!-- 这里动态生成span标签作为小圆点 -->
     </div>
   </div>
 
