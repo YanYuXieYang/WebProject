@@ -1,7 +1,7 @@
 /*
  * @Author: YanYuXieYang
  * @Date: 2021-01-17 21:32:25
- * @LastEditTime: 2021-01-18 11:21:23
+ * @LastEditTime: 2021-01-20 00:12:49
  * @LastEditors: Please set LastEditors
  * @Description: YanYuXieYang
  * @FilePath: \WebProject\carousel_map\other_animation\imitate_bilibili_carousel_map\index.js
@@ -21,6 +21,8 @@ $(function () {
     var imgLen = $(".pic-content li").length;
     var last = $(".pic-content li").last().clone();
     var first = $(".pic-content li").first().clone();
+    var previous = $(".last");
+    var next = $(".next");
     var clock = null;
     pContent.append(first);
     pContent.prepend(last);
@@ -53,7 +55,7 @@ $(function () {
      * @param {*} len
      * @return {*}
      */
-    function autoPlay(len) {
+    function autoPlay(len = 1) {
         pContent.animate({
             left: '-=' + len * imgWidth
         }, function () {
@@ -62,10 +64,83 @@ $(function () {
                 index = 0;
                 pContent.css({ left: -imgWidth - offsetWidth })
             }
+            console.log("len=" + len + ", index=" + index);
             setBullet();
             setTitle();
         })
     }
+    function setPlay(len) {
+        pContent.animate({
+            left: '-=' + len * imgWidth
+        }, function () {
+            if (index === 0) {
+                pContent.css({ left: -imgWidth - offsetWidth })
+            }
+            console.log("len=" + len + ", index=" + index);
+            setBullet();
+            setTitle();
+        })
+    }
+    /**
+     * @description: 下一张
+     * @param {*}
+     * @return {*}
+     */
+    function nextPlay() {
+        index++;
+        if (index === imgLen) {
+            index = 0;
+        }
+        var len = 1;
+        pContent.animate({
+            left: '-=' + len * imgWidth
+        }, function () {
+            if (index === 0) {
+                pContent.css({ left: -imgWidth - offsetWidth })
+            }
+            console.log("len=" + len + ", index=" + index);
+            setBullet();
+            setTitle();
+        })
+    }
+    /**
+     * @description: 上一张
+     * @param {*}
+     * @return {*}
+     */
+    function lastPlay() {
+        index--;
+        while (index < 0) {
+            index += imgLen;
+        }
+        var len = -1;
+        pContent.animate({
+            left: '+=' + len * imgWidth
+        }, function () {
+            if (index === 0) {
+                pContent.css({ left: -imgWidth - offsetWidth })
+            }
+            console.log("len=" + len + ", index=" + index);
+            setBullet();
+            setTitle();
+        })
+    }
+    /**
+     * @description: 点击上一张按钮
+     * @param {*}
+     * @return {*}
+     */
+    previous.on('click', function () {
+        lastPlay();
+    });
+    /**
+     * @description: 点击下一张按钮
+     * @param {*}
+     * @return {*}
+     */
+    next.on('click', function () {
+        nextPlay();
+    });
     /**
      * @description: 圆点点击事件
      * @param {*}
@@ -73,6 +148,7 @@ $(function () {
      */
     $(".triger span").on('click', function () {
         var currentIndex = $(this).index();
+        console.log("currentIndex=" + currentIndex + ", index=" + index);
         autoPlay(currentIndex - index);
     })
     /**
@@ -97,9 +173,9 @@ $(function () {
      * @return {*}
      */
     function timeClock() {
-        clock = setInterval(function () {
-            autoPlay(1)
-        }, 2000)
+        // clock = setInterval(function () {
+        //     autoPlay()
+        // }, 2000)
     }
 
     timeClock();
