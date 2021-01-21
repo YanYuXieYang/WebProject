@@ -1,0 +1,88 @@
+#banner{
+  width: 230px;
+  height: 410px;
+  margin: 0 auto;
+  position: relative;
+}
+.slider-img{
+  position: relative;
+  overflow: hidden;
+  width: 230px;
+  height: 410px;
+}
+.slider-img li{
+  position: absolute;
+  width: 230px;
+  height: 410px;
+  font-size: 0px;  
+  list-style: none;
+}
+.slider-img li img{
+  width: 100%;
+  height: 100%;
+  /* width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%; */
+  /* display: block; */
+  vertical-align: middle;
+}
+
+#banner .slider-btn{
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+  height: 18px;
+}
+#banner .slider-btn span{
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin: 0 2px;
+  border-radius: 50%;
+  background-color: blue;
+  /* background: url(../../img/5.png) no-repeat -855px -790px; */
+}
+#banner .slider-btn .current_span{
+  /* background-position: -855px -727px; */
+  background-color: greenyellow;
+}
+
+.next{
+	width: 0px;
+	height: 0px;
+	position: absolute;
+	z-index: 99;
+	right: -17px;
+	top: 185px;
+	border: 30px solid rgba(200,200,200,0.4);/*绘制下一张按钮形状*/
+	border-right-color:transparent;
+	border-top-color: transparent;
+	border-bottom-color: transparent;
+}
+.next:hover{
+	border: 30px solid rgba(200,200,200,0.9);
+	border-right-color:transparent;
+	border-top-color: transparent;
+	border-bottom-color: transparent;
+	cursor: pointer;
+}
+.last{
+	width: 0px;
+	height: 0px;
+	position: absolute;
+	z-index: 99;
+	left: -17px;
+	top: 185px;
+	border: 30px solid rgba(200,200,200,0.4);
+	border-left-color:transparent;
+	border-top-color: transparent;
+	border-bottom-color: transparent;
+}
+.last:hover{
+	border: 30px solid rgba(200,200,200,0.9);
+	border-left-color:transparent;
+	border-top-color: transparent;
+	border-bottom-color: transparent;
+	cursor: pointer;
+}
