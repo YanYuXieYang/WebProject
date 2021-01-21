@@ -1,11 +1,10 @@
 /*
  * @Author: your name
  * @Date: 2021-01-21 14:42:44
- * @LastEditTime: 2021-01-21 15:57:26
+ * @LastEditTime: 2021-01-21 19:54:53
  * @LastEditors: Please set LastEditors
  * @Description: 存在问题：1.轮播时多了空白线；
- *                        2.放在后台一段时间，切换到前台，动画死循环切换。
- *                        3.动画结束重新开始时，方向不对。
+ *                        2.放在后台一段时间，切换到前台，动画死循环切换。                        
  * @FilePath: \WebProject\carousel_map\other_animation\imitate_bilibili_carousel_map2\index.js
  */
 $(function () {
@@ -15,14 +14,16 @@ $(function () {
   var $slider_btn = $(".slider-btn").find("span");
   //设置轮播图中当前的图片为第一张图片
   var current_index = 0;
+  var timerInv = 2000;
   var width = $as.eq(0).width();
+  console.log("width=" + width);
   //图片位置初始化，将除了第一张图片之外的图片全部移到.slider-img类范围之外进行隐藏
   for (var i = 1; i < $as.length; i++) {
     $($as[i]).css({ left: width });
   }
 
   //开启定时器，每隔3秒钟进行滚动
-  var auto_rotation = setInterval(Rotation_auto, 3000);
+  var auto_rotation = setInterval(Rotation_auto, timerInv);
 
   //当鼠标移入时停止自动轮播，响应鼠标单击事件
   $("#banner").mouseover(function () {
@@ -32,7 +33,7 @@ $(function () {
 
   //当鼠标移出时开启自动轮播
   $("#banner").mouseout(function () {
-    auto_rotation = setInterval(Rotation_auto, 3000);
+    auto_rotation = setInterval(Rotation_auto, timerInv);
   });
 
 
@@ -48,18 +49,18 @@ $(function () {
     if (next_index == current_index)
       return;
     //如果点击的是处于当前图片的下一张图片，也就是向右边轮播
-    else if (next_index > current_index) {
-      //将当前图片移出区域
+    else if (next_index > current_index) {//将当前图片移出区域
       $as.eq(current_index).animate({ left: -width });
       $as.eq(next_index).css({ left: width });
-
     }
-    //向左边轮播
-    else {
-      //将当前图片移出区域
-      $as.eq(current_index).animate({ left: width });
-      $as.eq(next_index).css({ left: -width });
+    else {//进入下一个循环，保持向右边轮播
+      $as.eq(current_index).animate({ left: -width });
+      $as.eq(next_index).css({ left: width });
     }
+    /* else {//进入下一个循环，向左边轮播
+       $as.eq(current_index).animate({ left: width });
+       $as.eq(next_index).css({ left: -width });
+     }*/
     //将下一张图片移入区域
     $as.eq(next_index).animate({ left: 0 });
   }
