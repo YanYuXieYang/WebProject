@@ -1,8 +1,8 @@
 <!--
  * @Author: YanYuXieYang
  * @Date: 2021-01-09 11:08:58
- * @LastEditTime: 2021-01-17 18:24:42
- * @LastEditors: your name
+ * @LastEditTime: 2021-01-20 20:45:28
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \WebProject\carousel_map\README.md
 -->
@@ -53,6 +53,7 @@
 ```
 ### 2. 原理
 使用transition和transform实现，后台js代码动态修改样式。
+思路：每张图有3个left坐标取值，一轮后就递增一次z-index值。
 ```
 //img 459x202
 //图一的style，当前图：1
