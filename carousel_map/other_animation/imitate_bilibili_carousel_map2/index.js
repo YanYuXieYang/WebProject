@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-21 14:42:44
- * @LastEditTime: 2021-01-21 19:54:53
+ * @LastEditTime: 2021-01-21 20:11:22
  * @LastEditors: Please set LastEditors
  * @Description: 存在问题：1.轮播时多了空白线；
  *                        2.放在后台一段时间，切换到前台，动画死循环切换。                        
@@ -16,7 +16,8 @@ $(function () {
   var current_index = 0;
   var timerInv = 2000;
   var width = $as.eq(0).width();
-  console.log("width=" + width);
+  console.log("a width=" + width + ", height=" + $as.eq(0).height());
+  console.log("slider-img width=" + $(".slider-img").width() + ", height=" + $(".slider-img").height());
   //图片位置初始化，将除了第一张图片之外的图片全部移到.slider-img类范围之外进行隐藏
   for (var i = 1; i < $as.length; i++) {
     $($as[i]).css({ left: width });
@@ -43,11 +44,16 @@ $(function () {
     $slider_btn.eq(index).addClass("current_span")
   }
 
-  //图片轮播逻辑
+  /**
+   * @description: 图片轮播逻辑。原理：设置jquery的animate动画的目标left值
+   * @param {*} next_index
+   * @return {*}
+   */
   function Rotation (next_index) {
     //如果点击的按钮是当前按钮的话，什么也不做
-    if (next_index == current_index)
+    if (next_index == current_index) {
       return;
+    }
     //如果点击的是处于当前图片的下一张图片，也就是向右边轮播
     else if (next_index > current_index) {//将当前图片移出区域
       $as.eq(current_index).animate({ left: -width });
