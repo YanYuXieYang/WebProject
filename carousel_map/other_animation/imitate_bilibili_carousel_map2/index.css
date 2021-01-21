@@ -1,0 +1,43 @@
+#banner{
+  width: 230px;
+  height: 410px;
+  margin: 0 auto;
+  position: relative;
+}
+.slider-img{
+  position: relative;
+  overflow: hidden;
+  width: 230px;
+  height: 410px;
+}
+.slider-img a{
+  position: absolute;
+  width: 230px;
+  height: 410px;
+}
+.slider-img a img{
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#banner .slider-btn{
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+  height: 18px;
+}
+#banner .slider-btn span{
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin: 0 2px;
+  border-radius: 50%;
+  background-color: blue;
+  /* background: url(../../img/5.png) no-repeat -855px -790px; */
+}
+#banner .slider-btn .current_span{
+  /* background-position: -855px -727px; */
+  background-color: greenyellow;
+}
