@@ -1,5 +1,5 @@
 #banner{
-  width: 270px;
+  width: 570px;
   height: 480px;
   margin: 0 auto;
   position: relative;
@@ -7,8 +7,11 @@
 .slider-img{
   position: relative;
   overflow: hidden;
-  width: 270px;
-  height: 480px;
+  width: 100%;
+  height: 100%;
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
 }
 .slider-img li{
   position: absolute;
@@ -16,6 +19,10 @@
   height: 480px;
   font-size: 0px;  
   list-style: none;
+  list-style-type: none;
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
 }
 .slider-img li img{
   width: 100%;
@@ -26,6 +33,9 @@
   max-height: 100%; */
   /* display: block; */
   vertical-align: middle;
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
 }
 
 #banner .slider-btn{
