@@ -1,7 +1,7 @@
 /*
  * @Author: YanYuXieYang
  * @Date: 2021-01-17 21:32:11
- * @LastEditTime: 2021-01-19 23:36:01
+ * @LastEditTime: 2021-01-22 14:15:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \WebProject\carousel_map\other_animation\imitate_bilibili_carousel_map\index.css
@@ -9,8 +9,8 @@
 /*轮播图*/
 .main-banner {
   position: relative;
-  width: 230px;
-  height: 410px;
+  width: 270px;
+  height: 480px;
   margin: 50px auto;
 }
 
@@ -34,8 +34,8 @@
 
 .main-banner .pic li {
   float: left;
-  width: 230px;
-  height: 410px;
+  width: 270px;
+  height: 480px;
   list-style: none;
 }
 

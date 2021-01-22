@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-21 14:42:44
- * @LastEditTime: 2021-01-21 23:33:32
+ * @LastEditTime: 2021-01-22 14:06:31
  * @LastEditors: Please set LastEditors
  * @Description: 存在问题：1.轮播时多了空白线；
  *                        2.放在后台一段时间，切换到前台，动画死循环切换。                        
@@ -38,76 +38,110 @@ $(function () {
   });
 
   //设置右下角小图标的样式
-  function index_change(index) {
+  function index_change (index) {
     $slider_btn.removeClass("current_span");
     $slider_btn.eq(index).addClass("current_span")
   }
 
+
+  function forward (next_index) {//往前
+    $as.eq(current_index).animate({ left: -width });
+    $as.eq(next_index).css({ left: width });
+  }
+  function back (next_index) {//后退
+    $as.eq(current_index).animate({ left: width });
+    $as.eq(next_index).css({ left: -width });
+  }
+
   /**
-   * @description: 图片轮播逻辑。原理：设置jquery的animate动画的目标left值
+   * @description: 图片轮播逻辑。原理：设置jquery的animate动画的目标left值，设置jquery的css属性值
    * @param {*} next_index
    * @return {*}
    */
-  function Rotation(next_index, click_event = false) {
+  function Rotation (next_index, func) {
     //如果点击的按钮是当前按钮的话，什么也不做
     if (next_index == current_index) {
       return;
     }
-    else if (0 === current_index && next_index === $as.length - 1 && click_event) {//点击上一张，向左边轮播
-      back(next_index);
-    } else if (next_index > current_index) {//如果点击的是处于当前图片的下一张图片，也就是向右边轮播，将当前图片移出区域
-      forward(next_index);
-    }
-    else if (0 === next_index && current_index === $as.length - 1 && !click_event) {//进行下一个循环，并且是非点击圆点操作，则向右边轮播
-      forward(next_index);
-    }
-    else {//向左边轮播
-      back(next_index);
-    }
+
+    //每个event的个性画动画效果
+    func(next_index);
+
     //将下一张图片移入区域
     $as.eq(next_index).animate({ left: 0 });
   }
-  function forward(next_index) {//往前
-    $as.eq(current_index).animate({ left: -width });
-    $as.eq(next_index).css({ left: width });
+
+  //自动轮播事件
+  function Rotation_auto () {
+    var index = (current_index + 1) % $slider_btn.length;
+    index_change(index);
+    Rotation(index, function (next_index) {
+      if (next_index > current_index) {//向右边轮播，将当前图片移出区域
+        forward(next_index);
+      }
+      else if (0 === next_index && current_index === $as.length - 1) {//进行下一个循环，向右边轮播
+        forward(next_index);
+      }
+      else {//向左边轮播
+        back(next_index);
+      }
+    });
+    current_index = index;
   }
-  function back(next_index) {//后退
-    $as.eq(current_index).animate({ left: width });
-    $as.eq(next_index).css({ left: -width });
-  }
-  //鼠标单击的轮播时间
-  function Rotation_click() {
+
+  //圆点单击的轮播时间
+  function Rotation_click () {
     var index = $(this).index();
     //改变小图标所在位置
     index_change(index);
     //轮播图效果
-    Rotation(index, true);
+    Rotation(index, function (next_index) {
+      if (next_index > current_index) {//向右边轮播
+        forward(next_index);
+      }
+      else {//向左边轮播
+        back(next_index);
+      }
+    });
     current_index = index;
   }
 
-  //自动轮播事件
-  function Rotation_auto() {
-    var index = (current_index + 1) % $slider_btn.length;
-    index_change(index);
-    Rotation(index);
-    current_index = index;
-  }
-
-  $(".last").on('click', function () {//上一张
+  //上一张
+  $(".last").on('click', function () {
     var index = current_index - 1 < 0 ? $as.length - 1 : current_index - 1;
     //改变小图标所在位置
     index_change(index);
     //轮播图效果
-    Rotation(index, true);
+    Rotation(index, function (next_index) {
+      if (next_index === $as.length - 1 && 0 === current_index) {//点击上一张，向左边轮播
+        back(next_index);
+      } else if (next_index > current_index) {//向右边轮播
+        forward(next_index);
+      }
+      else {//向左边轮播
+        back(next_index);
+      }
+    });
     current_index = index;
   });
 
-  $(".next").on('click', function () {//下一张
+  //下一张
+  $(".next").on('click', function () {
     var index = current_index + 1 >= $as.length ? 0 : current_index + 1;
     //改变小图标所在位置
     index_change(index);
     //轮播图效果
-    Rotation(index);
+    Rotation(index, function (next_index) {
+      if (next_index > current_index) {//向右边轮播
+        forward(next_index);
+      }
+      else if (0 === next_index && current_index === $as.length - 1) {//进行下一个循环，向右边轮播
+        forward(next_index);
+      }
+      else {//向左边轮播
+        back(next_index);
+      }
+    });
     current_index = index;
   });
 })

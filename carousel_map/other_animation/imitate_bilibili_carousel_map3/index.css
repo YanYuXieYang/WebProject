@@ -1,19 +1,19 @@
 #banner{
-  width: 230px;
-  height: 410px;
+  width: 270px;
+  height: 480px;
   margin: 0 auto;
   position: relative;
 }
 .slider-img{
   position: relative;
   overflow: hidden;
-  width: 230px;
-  height: 410px;
+  width: 270px;
+  height: 480px;
 }
 .slider-img li{
   position: absolute;
-  width: 230px;
-  height: 410px;
+  width: 270px;
+  height: 480px;
   font-size: 0px;  
   list-style: none;
 }
