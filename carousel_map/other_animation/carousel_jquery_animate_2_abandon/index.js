@@ -1,7 +1,7 @@
 /*
  * @Author: YanYuXieYang
  * @Date: 2021-01-17 21:32:25
- * @LastEditTime: 2021-01-23 11:22:59
+ * @LastEditTime: 2021-01-23 12:07:22
  * @LastEditors: Please set LastEditors
  * @Description: 使用jquery的animate()执行 CSS 属性集的自定义动画。（需手动调整宽度、高度，不建议使用）
  * @FilePath: \WebProject\carousel_map\other_animation\imitate_bilibili_carousel_map\index.js
@@ -194,9 +194,9 @@ $(function () {
    * @return {*}
    */
   function timeClock () {
-    // clock = setInterval(function () {
-    //     autoPlay()
-    // }, 2000)
+    clock = setInterval(function () {
+      autoPlay()
+    }, 2000)
   }
 
   timeClock();
