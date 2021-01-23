@@ -1,9 +1,9 @@
 /*
  * @Author: YanYuXieYang
  * @Date: 2021-01-17 21:32:25
- * @LastEditTime: 2021-01-20 20:37:52
+ * @LastEditTime: 2021-01-23 11:22:59
  * @LastEditors: Please set LastEditors
- * @Description: YanYuXieYang
+ * @Description: 使用jquery的animate()执行 CSS 属性集的自定义动画。（需手动调整宽度、高度，不建议使用）
  * @FilePath: \WebProject\carousel_map\other_animation\imitate_bilibili_carousel_map\index.js
  */
 

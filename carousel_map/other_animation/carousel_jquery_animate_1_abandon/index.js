@@ -3,7 +3,8 @@
  * @Date: 2021-01-21 14:42:44
  * @LastEditTime: 2021-01-21 20:11:22
  * @LastEditors: Please set LastEditors
- * @Description: 存在问题：1.轮播时多了空白线；
+ * @Description: jquery animate实现动画
+ *               存在问题：1.轮播时多了空白线；
  *                        2.放在后台一段时间，切换到前台，动画死循环切换。                        
  * @FilePath: \WebProject\carousel_map\other_animation\imitate_bilibili_carousel_map2\index.js
  */

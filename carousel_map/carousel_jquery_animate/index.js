@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-21 14:42:44
- * @LastEditTime: 2021-01-23 11:15:50
+ * @LastEditTime: 2021-01-23 11:19:10
  * @LastEditors: Please set LastEditors
  * @Description: 可优化之处：1.快速点击，时间差导致两图片之间出现背景空隙                   
  * @FilePath: \WebProject\carousel_map\other_animation\imitate_bilibili_carousel_map2\index.js
@@ -67,17 +67,6 @@ $(function () {
 
     //每个event的个性画动画效果
     func(next_index);
-
-    // sleep(30).then(() => {
-    //   console.log("sleep end");
-    //   $as.eq(next_index).stop().animate({ left: 0 });
-    // });
-    // //将下一张图片移入区域
-    // // $as.eq(next_index).stop().animate({ left: 0 });
-  }
-
-  function sleep (time) {
-    return new Promise(resolve => setTimeout(resolve, time));
   }
 
   //自动轮播事件
