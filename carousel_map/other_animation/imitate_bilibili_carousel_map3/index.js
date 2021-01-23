@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-21 14:42:44
- * @LastEditTime: 2021-01-22 14:06:31
+ * @LastEditTime: 2021-01-23 10:52:22
  * @LastEditors: Please set LastEditors
  * @Description: 存在问题：1.轮播时多了空白线；
  *                        2.放在后台一段时间，切换到前台，动画死循环切换。                        
@@ -45,11 +45,11 @@ $(function () {
 
 
   function forward (next_index) {//往前
-    $as.eq(current_index).animate({ left: -width });
+    $as.eq(current_index).stop().animate({ left: -width });
     $as.eq(next_index).css({ left: width });
   }
   function back (next_index) {//后退
-    $as.eq(current_index).animate({ left: width });
+    $as.eq(current_index).stop().animate({ left: width });
     $as.eq(next_index).css({ left: -width });
   }
 
@@ -68,7 +68,7 @@ $(function () {
     func(next_index);
 
     //将下一张图片移入区域
-    $as.eq(next_index).animate({ left: 0 });
+    $as.eq(next_index).stop().animate({ left: 0 });
   }
 
   //自动轮播事件
