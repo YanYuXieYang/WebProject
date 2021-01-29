@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-01-21 14:42:44
- * @LastEditTime: 2021-01-23 11:19:10
+ * @LastEditTime: 2021-01-23 12:30:12
  * @LastEditors: Please set LastEditors
  * @Description: 可优化之处：1.快速点击，时间差导致两图片之间出现背景空隙                   
  * @FilePath: \WebProject\carousel_map\other_animation\imitate_bilibili_carousel_map2\index.js
